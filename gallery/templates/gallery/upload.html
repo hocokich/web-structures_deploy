@@ -24,16 +24,15 @@
                 
                 <!-- Навигация справа -->
                 <nav class="nav-menu" id="navMenu">
-                    <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">
+                    <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}" data-icon="🏠">
                         🏠 Галерея
                     </a>
-                    <a href="{% url 'about' %}" class="nav-link {% if 'about' in request.path %}active{% endif %}">
+                    <a href="{% url 'about' %}" class="nav-link {% if 'about' in request.path %}active{% endif %}" data-icon="📖">
                         📖 О нас
                     </a>
                     <a href="{% url 'upload' %}" class="nav-link upload-btn">
-                        ✨ Загрузить модель
+                        ✨ Загрузить
                     </a>
-                    <!-- Кнопка переключения темы перенесена в хедер -->
                     <button class="theme-toggle-header" id="themeToggleHeader">🌙</button>
                 </nav>
             </div>

@@ -451,6 +451,15 @@ body.dark-theme .upload-page input[type="file"]:hover {
     background: #2d2d2d;
 }
 
+.about-page h2 {
+    color: inherit;
+}
+
+body.about-page.dark-theme h2 {
+    color: #e0e0e0 !important;
+}
+
+
 #preview-container {
     width: 100%;
     height: 200px;
@@ -638,56 +647,415 @@ body.dark-theme .card-meta {
     color: #cccccc !important;
 }
 
-/* ========== АДАПТИВНОСТЬ ========== */
-@media (max-width: 768px) {
-    .burger-menu {
-        display: flex;
+body.dark-theme .gallery-grid > div[style*="text-align: center"] h3,
+body.dark-theme .gallery-grid > div[style*="text-align: center"] p,
+body.dark-theme .gallery-grid > div[style*="text-align: center"] a {
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme .gallery-grid > div[style*="text-align: center"] a {
+    color: #4da8ff !important;
+}
+
+/* ========== АДАПТАЦИЯ ПОД ТЕЛЕФОН ========== */
+@media (max-width: 1080px) {
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    body {
+
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+
+        font-size: 18px;
     }
     
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        right: -100%;
-        flex-direction: column;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        width: 250px;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease;
-        gap: 15px;
+    .card-preview {
+        height: 500px;
+        width: 100%;
+        overflow: hidden;
+
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+
+    .card-preview canvas {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
     }
     
-    .nav-menu.active {
+    .card-title {
+        font-size: 2.5rem;
+        max-width: calc(100% - 120px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .card-meta {
+        font-size: 1.5rem;
+        max-width: calc(100% - 120px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .card-info {
+        position: relative;
+        padding-right: 110px;
+    }
+    
+    .card-info .btn {
+        position: absolute;
+        top: 20px;
         right: 20px;
+        margin: 0 !important;
+        width: auto !important;
+    }
+    
+    .card-info .btn + span {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        margin: 0 !important;
+    }
+    
+    .card-info span {
+        font-size: 2rem !important;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 1.5rem;
+    }
+    
+    .play-btn {
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
+    }
+    
+    .toolbar .sort-select {
+        font-size: 1rem !important;
+        padding: 10px 12px !important;
+        height: auto !important;
+        min-height: 44px;
+    }
+
+    .toolbar .search-input,
+    .toolbar .search-btn {
+        padding: 12px 18px;
+        font-size: 1rem;
     }
     
     .nav-link {
+        padding: 10px 18px;
+        font-size: 1rem;
+    }
+    
+    .logo {
+        font-size: 1.6rem;
+    }
+    
+    .upload-page h1 {
+        font-size: 2rem;
+    }
+    
+    .upload-page input[type="text"],
+    .upload-page input[type="file"] {
+        padding: 14px 18px;
+        font-size: 1rem;
+    }
+    
+    #submit-btn {
+        padding: 16px;
+        font-size: 1.2rem;
+    }
+
+    /* Текст "ничего не найдено" */
+    .empty-state h3,
+    .gallery-grid > div[style*="text-align: center"] h3 {
+        font-size: 2rem !important;
+    }
+    
+    .empty-state p,
+    .gallery-grid > div[style*="text-align: center"] p {
+        font-size: 1.5rem !important;
+    }
+    
+    .empty-state a,
+    .gallery-grid > div[style*="text-align: center"] a {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* ========== АДАПТАЦИЯ ПОД ТЕЛЕФОН (МЕНЮ ВНИЗУ) ========== */
+@media (max-width: 1080px) {
+
+    .pagination a,
+    .pagination .current {
+        font-size: 1.5rem !important;
+        padding: 12px 20px !important;
+        margin: 0 8px !important;
+    }
+    
+    .pagination {
+        margin-bottom: 100px !important;
+        padding: 20px !important;
+    }
+
+  .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        background: white;
+        margin: 0;
+        border-radius: 0;
+        padding: 15px 15px;
+
+        margin-top: 0;
+    }
+    
+    .toolbar form {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .toolbar .search-input {
+        font-size: 1.4rem !important;
+        padding: 15px 18px !important;
         width: 100%;
+    }
+    
+    .toolbar .sort-select {
+        font-size: 1.4rem !important;
+        padding: 15px 18px !important;
+        width: 100%;
+    }
+    
+    .toolbar .search-btn {
+        font-size: 1.4rem !important;
+        padding: 15px 20px !important;
+        width: 100%;
+    }
+    
+    .toolbar .reset-link {
+        font-size: 1.2rem !important;
+        padding: 10px;
         text-align: center;
+        display: inline-block;
+        width: 100%;
     }
     
-    body.dark-theme .nav-menu {
-        background: rgba(26, 26, 26, 0.98);
+    body.dark-theme .toolbar {
+        background: #2d2d2d;
     }
     
-    body {
-        padding-top: 70px;
+    /* Чтобы контент не наезжал */
+    main {
+        padding-top: 10px;
+    }
+
+    /* Фиксированное меню внизу */
+    .main-header {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        padding: 5px 0;
+        z-index: 1000;
+        margin: 0;
     }
     
     .header-container {
-        padding: 12px 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo {
-        font-size: 1.2rem;
+        padding: 8px 15px;
+        max-width: 100%;
     }
     
     .nav-menu {
-        width: 200px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .nav-link {
+        flex: 1;
+        text-align: center;
+        padding: 18px 5px !important;
+        min-width: 0;
+    }
+    
+    /* Скрываем текст, оставляем иконку */
+    .nav-link:not(.upload-btn) {
+        font-size: 0 !important;
+    }
+    
+    .nav-link:not(.upload-btn)::before {
+        content: attr(data-icon);
+        font-size: 3rem !important;
+    }
+    
+    /* Кнопка загрузки с текстом */
+    .nav-link.upload-btn {
+        font-size: 1.5rem !important;
+        padding: 16px 10px !important;
+        white-space: nowrap;
+        flex: 1.2;
+    }
+    
+    /* Кнопка темы */
+    /* Принудительно показываем кнопку */
+    .theme-toggle-header {
+        position: fixed !important;
+        bottom: 120px !important;
+        right: 20px !important;
+        top: auto !important;
+        left: auto !important;
+        width: 120px !important;
+        height: 120px !important;
+        border-radius: 50% !important;
+        background: #007bff !important;
+        color: white !important;
+        font-size: 2rem !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+        z-index: 9999 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        transform: none !important;
+    }
+    
+    /* Не скрываем, а просто даем новую позицию */
+    .nav-menu .theme-toggle-header {
+        position: fixed !important;
+        bottom: 200px !important;
+        left: 50px !important;
+        right: auto !important;
+        top: auto !important;
+        display: flex !important;
+    }
+    
+    /* Скрываем логотип и бургер */
+    .logo {
+        display: none;
+    }
+    
+    .burger-menu {
+        display: none;
+    }
+    
+    /* Темная тема для плавающей кнопки */
+    body.dark-theme .theme-toggle-header {
+        background: #ffc107 !important;
+        color: #1a1a1a !important;
+    }
+    
+    /* Отступ для контента, чтобы не уходил под меню */
+    body {
+        padding-bottom: 80px !important;
+        padding-top: 20px !important;
     }
 }
+/* ========== UPLOAD PAGE ========== */
+@media (max-width: 1080px) {
+    .upload-page main {
+        margin: 20px auto 120px auto !important;
+        max-width: 90% !important;
+        width: 100%;
+    }
+    
+    .upload-page h1 {
+        text-align: center !important;
+        font-size: 3rem !important;
+        margin-bottom: 40px !important;
+    }
+    
+    .upload-page form {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .upload-page form label {
+        font-size: 2rem !important;
+        margin-bottom: 12px !important;
+        display: block;
+    }
+    
+    .upload-page input[type="text"],
+    .upload-page input[type="file"] {
+        width: 100% !important;
+        box-sizing: border-box;
+        font-size: 1.5rem !important;
+        padding: 18px 20px !important;
+    }
+    
+    .upload-page .form-group p {
+        margin-bottom: 0 !important;
+    }
+    
+    #preview-container {
+        width: 100% !important;
+        box-sizing: border-box;
+        margin: 25px 0 !important;
+    }
+    
+    #preview-container span {
+        font-size: 1.5rem !important;
+    }
+    
+    #submit-btn {
+        width: 100% !important;
+        display: block;
+        text-align: center;
+        font-size: 2rem !important;
+        padding: 20px !important;
+        margin-top: 20px !important;
+    }
+}
+/* ========== ABOUT PAGE ========== */
+@media (max-width: 1080px) {
+    /* Страница about */
+    .about-page h1 {
+        font-size: 4rem !important;
+        margin-bottom: 25px !important;
+    }
+    
+    .about-page h2 {
+        font-size: 2.5rem !important;
+        margin-top: 30px !important;
+        margin-bottom: 15px !important;
+    }
 
+    body.dark-theme .about-page h2 {
+    color: #ffffff !important;
+    }
+    
+    .about-page p {
+        font-size: 2rem !important;
+    }
+    
+    .about-page hr {
+        margin: 30px 0 !important;
+    }
+    
+    .about-page footer p {
+        font-size: 1.5rem !important;
+        margin-top: 40px !important;
+    }
+}
