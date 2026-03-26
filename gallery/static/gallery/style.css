@@ -1,9 +1,13 @@
 /* Базовый сброс и шрифт */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5; /* Светло-серый фон */
+    background-color: #f5f5f5;
     margin: 0;
-    padding: 20px;
+    padding-top: 80px;
 }
 
 header {
@@ -14,12 +18,8 @@ header {
 /* --- СЕТКА (GRID) --- */
 .gallery-grid {
     display: grid;
-    /* Это магическая строка адаптивности:
-    Создавай столько колонок, сколько влезет (auto-fill).
-    Минимальная ширина колонки 280px.
-    Если места много - растягивай их (1fr). */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px; /* Расстояние между карточками */
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -28,16 +28,15 @@ header {
 .asset-card {
     background: white;
     border-radius: 12px;
-    overflow: hidden; /* Чтобы содержимое не вылезало за скругленные углы */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Легкая тень */
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: transform 0.2s;
 }
 
 .asset-card:hover {
-    transform: translateY(-5px); /* При наведении карточка чуть взлетает */
+    transform: translateY(-5px);
 }
 
-/* Место для будущего 3D-вьювера или скриншота */
 .card-preview {
     position: relative;
     height: 200px;
@@ -47,11 +46,9 @@ header {
     justify-content: center;
     color: #888;
     font-size: 3rem;
-    background: radial-gradient(circle, #ffffff,
-#e0e0e0);
+    background: radial-gradient(circle, #ffffff, #e0e0e0);
 }
 
-/* Затемнение картинки при наведении */
 .card-preview:hover::after {
     content: '';
     position: absolute;
@@ -59,32 +56,27 @@ header {
     background: rgba(0,0,0,0.1);
 }
 
-/* Кнопка Play */
 .play-btn {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Точная центровка */
-
+    transform: translate(-50%, -50%);
     width: 60px;
     height: 60px;
     background: rgba(0, 0, 0, 0.6);
     border-radius: 50%;
     border: 2px solid white;
-
     color: white;
     font-size: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     transition: transform 0.2s, background 0.2s;
-    z-index: 5; /* Чтобы была поверх картинки */
+    z-index: 5;
 }
 
-/* Эффект нажатия */
 .card-preview:hover .play-btn {
-    background: rgba(0, 123, 255, 0.8); /* Синий при наведении */
+    background: rgba(0, 123, 255, 0.8);
     transform: translate(-50%, -50%) scale(1.1);
 }
 
@@ -96,11 +88,9 @@ header {
     margin: 0 0 10px 0;
     font-size: 1.2rem;
     color: #333;
-
-    /* Новые стили обрезки */
-    white-space: nowrap; /* Запрет переноса на новую строку */
-    overflow: hidden; /* Скрыть хвост */
-    text-overflow: ellipsis; /* Добавить троеточие (...) */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-meta {
@@ -109,7 +99,6 @@ header {
     margin-bottom: 15px;
 }
 
-/* Кнопка */
 .btn {
     display: inline-block;
     text-decoration: none;
@@ -119,23 +108,23 @@ header {
     border-radius: 6px;
     font-size: 0.9rem;
 }
+
 .btn:hover {
     background-color: #0056b3;
 }
 
-/* Сам экран загрузки (поверх 3D) */
 .loader-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый */
+    background: rgba(255, 255, 255, 0.9);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 10;
-    transition: opacity 0.3s; /* Плавное исчезновение */
+    transition: opacity 0.3s;
 }
-/* Полоска прогресса (фон) */
+
 .progress-bar {
     width: 60%;
     height: 6px;
@@ -144,21 +133,20 @@ header {
     overflow: hidden;
     margin-top: 10px;
 }
-/* Полоска прогресса (заполнение) */
+
 .progress-fill {
-    width: 0%; /* Будем менять это через JS */
+    width: 0%;
     height: 100%;
-    background-color: #007bff; /* Синий цвет */
+    background-color: #007bff;
     transition: width 0.1s;
 }
+
 .error-msg {
     color: #dc3545;
     text-align: center;
     padding: 20px;
 }
 
-
-/* Панель инструментов */
 .toolbar {
     background: white;
     padding: 20px;
@@ -168,15 +156,19 @@ header {
     display: flex;
     gap: 15px;
     align-items: center;
-    flex-wrap: wrap; /* Чтобы на мобильном переносилось */
+    flex-wrap: wrap;
+    margin-left: 20px;
+    margin-right: 20px;
 }
+
 .search-input {
-    flex-grow: 1; /* Занимает всё свободное место */
+    flex-grow: 1;
     padding: 10px 15px;
     border: 1px solid #ddd;
     border-radius: 6px;
     font-size: 1rem;
 }
+
 .sort-select {
     padding: 10px;
     border: 1px solid #ddd;
@@ -184,6 +176,7 @@ header {
     background: white;
     cursor: pointer;
 }
+
 .search-btn {
     padding: 10px 25px;
     background-color: #007bff;
@@ -193,21 +186,23 @@ header {
     cursor: pointer;
     font-size: 1rem;
 }
+
 .search-btn:hover {
     background-color: #0056b3;
 }
+
 .reset-link {
     color: #dc3545;
     text-decoration: none;
     font-size: 0.9rem;
 }
 
-
 .pagination {
     margin-top: 40px;
     text-align: center;
     padding: 20px;
 }
+
 .pagination a {
     display: inline-block;
     padding: 8px 16px;
@@ -218,14 +213,15 @@ header {
     text-decoration: none;
     color: #333;
 }
+
 .pagination a:hover {
     background: #f0f0f0;
 }
+
 .pagination .current {
     font-weight: bold;
     margin: 0 10px;
 }
-
 
 .messages-container {
     position: fixed;
@@ -234,6 +230,7 @@ header {
     z-index: 1000;
     width: 300px;
 }
+
 .alert {
     padding: 15px;
     margin-bottom: 10px;
@@ -241,16 +238,268 @@ header {
     color: white;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     animation: slideIn 0.5s ease-out;
-    }
-.alert.success { background-color: #28a745; } /* Зеленый */
-.alert.error { background-color: #dc3545; } /* Красный */
-.alert.warning { background-color: #ffc107; color: black; } /* Желтый */
+}
+
+.alert.success { background-color: #28a745; }
+.alert.error { background-color: #dc3545; }
+.alert.warning { background-color: #ffc107; color: black; }
 
 @keyframes slideIn {
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
 
+/* ========== ФИКСИРОВАННЫЙ ХЕДЕР ========== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.main-header.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #007bff, #00b4ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: transform 0.2s;
+}
+
+.logo:hover {
+    transform: scale(1.02);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    background: rgba(0, 123, 255, 0.1);
+    color: #007bff;
+}
+
+.nav-link.active {
+    color: #007bff;
+    background: rgba(0, 123, 255, 0.1);
+}
+
+.nav-link.upload-btn {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 8px 20px;
+}
+
+.nav-link.upload-btn:hover {
+    background: linear-gradient(135deg, #218838, #1aa179);
+    transform: translateY(-2px);
+    color: white;
+}
+
+.theme-toggle-header {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle-header:hover {
+    background: #e0e0e0;
+    transform: scale(1.05);
+}
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.burger-menu span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+/* Страница About — отступы по бокам */
+.about-page {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+/* Страница About — линия не на всю ширину */
+.about-page hr {
+    max-width: 800px;
+    margin-left: 0;
+}
+
+/* ========== СТРАНИЦА ЗАГРУЗКИ ========== */
+.upload-page main {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.upload-page h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+    background: linear-gradient(135deg, #007bff, #000000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.upload-page form p {
+    margin-bottom: 24px;
+}
+
+.upload-page form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.upload-page form input[type="text"]{
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.upload-page form input[type="text"]:focus{
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+/* Стилизуем input file */
+.upload-page input[type="file"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    background: #f5f5f5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-page input[type="file"]:hover {
+    border-color: #007bff;
+    background: #fafafa;
+}
+
+/* Темная тема */
+.upload-page input[type="file"]::file-selector-button {
+    display: none;
+}
+body.dark-theme .upload-page input[type="file"] {
+    background: #1e1e1e;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-theme .upload-page input[type="file"]:hover {
+    border-color: #007bff;
+    background: #2d2d2d;
+}
+
+#preview-container {
+    width: 100%;
+    height: 200px;
+    background: #f5f5f5;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin: 15px 0;
+}
+
+#preview-container:hover {
+    border-color: #007bff;
+    background: #fafafa;
+}
+
+#preview-container span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+#submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+#submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+#submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
 /* ========== ТЕМНАЯ ТЕМА ========== */
 body.dark-theme {
@@ -282,14 +531,15 @@ body.dark-theme .sort-select {
     color: #e0e0e0;
 }
 
-body.dark-theme .search-input::placeholder {
-    color: #888;
-}
-
 body.dark-theme .pagination a {
     background: #2d2d2d;
     border-color: #555;
     color: #e0e0e0;
+}
+
+body.dark-theme .pagination .current,
+body.dark-theme .step-links .current {
+    color: #e0e0e0 !important;
 }
 
 body.dark-theme .pagination a:hover {
@@ -304,112 +554,140 @@ body.dark-theme .card-preview {
     background: radial-gradient(circle, #3d3d3d, #2d2d2d);
 }
 
-/* Кнопка переключения темы */
-.theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #007bff;
-    color: white;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    z-index: 1000;
-    transition: transform 0.2s;
+body.dark-theme .main-header {
+    background: rgba(26, 26, 26, 0.95);
 }
 
-.theme-toggle:hover {
-    transform: scale(1.1);
+body.dark-theme .main-header.scrolled {
+    background: rgba(26, 26, 26, 0.98);
 }
 
-body.dark-theme .theme-toggle {
-    background: #ffc107;
-    color: #1a1a1a;
+body.dark-theme .nav-link {
+    color: #e0e0e0;
 }
+
+body.dark-theme .nav-link:hover {
+    background: rgba(0, 123, 255, 0.2);
+    color: #4da8ff;
+}
+
+body.dark-theme .nav-link.upload-btn {
+    color: white !important;
+}
+
+body.dark-theme .theme-toggle-header {
+    background: #3d3d3d;
+    color: #e0e0e0;
+}
+
+body.dark-theme .theme-toggle-header:hover {
+    background: #4d4d4d;
+}
+
+body.dark-theme .burger-menu span {
+    background: #e0e0e0;
+}
+
+/* Темная тема для upload — фон блока темный */
+body.dark-theme .upload-page main {
+    background: #3a3a3a !important;
+}
+
+body.dark-theme .upload-page h1 {
+    color: white !important;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+}
+
+body.dark-theme .upload-page form input[type="text"],
+body.dark-theme .upload-page form input[type="file"] {
+    background: #1e1e1e;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-theme .upload-page form input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+body.dark-theme #preview-container {
+    background: #1e1e1e;
+    border-color: #444;
+}
+
+body.dark-theme #preview-container:hover {
+    border-color: #007bff;
+    background: #2d2d2d;
+}
+
+body.dark-theme #preview-container span {
+    color: #aaa;
+}
+
 body.dark-theme h1,
-body.dark-theme header h1,
 body.dark-theme .page-title {
     color: #ffffff !important;
 }
 
-body.dark-theme header a:not(.btn) {
-    color: #4da8ff;
-}
-
-body.dark-theme .reset-link {
-    color: #ff6b6b;
-}
-
-body.dark-theme header a:not(.btn) {
-    color: #6ea8fe !important;
-}
-
 body.dark-theme p,
 body.dark-theme .form-group label,
-body.dark-theme .form-group p,
-body.dark-theme li,
-body.dark-theme .card-meta,
-body.dark-theme footer p {
-    color: #cccccc !important;
-}
-
-/* Для текста в форме загрузки */
-body.dark-theme form p {
-    color: #cccccc !important;
-}
-
-/* Для подсказок и дополнительного текста */
-body.dark-theme .helptext,
-body.dark-theme small {
-    color: #aaaaaa !important;
-}
-
-/* Для ссылок в футере и других местах */
-body.dark-theme footer a {
-    color: #6ea8fe !important;
-}
-
-/* Для текста внутри контейнера превью */
-body.dark-theme #preview-container span {
-    color: #999999 !important;
-}
-
-
-/* Карточка и вес файла */
 body.dark-theme .card-info,
-body.dark-theme .card-info span,
-body.dark-theme .card-meta span {
+body.dark-theme .card-meta {
     color: #cccccc !important;
 }
 
-/* Специально для веса файла (float: right) */
-body.dark-theme .card-info span[style*="float: right"] {
-    color: #aaaaaa !important;
+/* ========== АДАПТИВНОСТЬ ========== */
+@media (max-width: 768px) {
+    .burger-menu {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        width: 250px;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        gap: 15px;
+    }
+    
+    .nav-menu.active {
+        right: 20px;
+    }
+    
+    .nav-link {
+        width: 100%;
+        text-align: center;
+    }
+    
+    body.dark-theme .nav-menu {
+        background: rgba(26, 26, 26, 0.98);
+    }
+    
+    body {
+        padding-top: 70px;
+    }
+    
+    .header-container {
+        padding: 12px 20px;
+    }
 }
 
-/* Или более универсально — для всех span внутри card-info */
-body.dark-theme .card-info span {
-    color: #cccccc !important;
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .nav-menu {
+        width: 200px;
+    }
 }
 
-/* Пагинация — текст "Страница X из Y" */
-body.dark-theme .pagination .current,
-body.dark-theme .step-links .current {
-    color: #e0e0e0 !important;
-}
-
-/* Все ссылки пагинации */
-body.dark-theme .pagination a {
-    background: #2d2d2d !important;
-    border-color: #555 !important;
-    color: #e0e0e0 !important;
-}
-
-body.dark-theme .pagination a:hover {
-    background: #3d3d3d !important;
-    color: #ffffff !important;
-}

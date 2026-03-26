@@ -7,15 +7,38 @@
         {% load static %}
         <link rel="stylesheet" href="{% static 'gallery/style.css' %}">
     </head>
-    <body>
+    <body class="about-page">
 
-        <button class="theme-toggle" id="themeToggle">🌙</button>
-
-        <header>
-            <a href="{% url 'home' %}">← Домой</a>
-            
-            <!-- {{ ... }} — это переменная. Мы передадим её← из Python -->
-            <h1>{{ page_title }}</h1>
+        <!-- ========== НОВЫЙ ФИКСИРОВАННЫЙ ХЕДЕР ========== -->
+        <header class="main-header" id="mainHeader">
+            <div class="header-container">
+                <!-- Логотип слева -->
+                <a href="{% url 'home' %}" class="logo">
+                    🎨 3D Storage
+                </a>
+                
+                <!-- Бургер-меню (только на мобилках) -->
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <!-- Навигация справа -->
+                <nav class="nav-menu" id="navMenu">
+                    <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">
+                        🏠 Галерея
+                    </a>
+                    <a href="{% url 'about' %}" class="nav-link {% if 'about' in request.path %}active{% endif %}">
+                        📖 О нас
+                    </a>
+                    <a href="{% url 'upload' %}" class="nav-link upload-btn">
+                        ✨ Загрузить модель
+                    </a>
+                    <!-- Кнопка переключения темы перенесена в хедер -->
+                    <button class="theme-toggle-header" id="themeToggleHeader">🌙</button>
+                </nav>
+            </div>
         </header>
 
         <main>

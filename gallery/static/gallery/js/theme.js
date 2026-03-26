@@ -1,4 +1,5 @@
-const themeBtn = document.getElementById('themeToggle');
+// Ищем кнопку (пробуем оба селектора, на случай если где-то используется старый)
+const themeBtn = document.getElementById('themeToggleHeader') || document.getElementById('themeToggle');
 
 function toggleTheme() {
     document.body.classList.toggle('dark-theme');

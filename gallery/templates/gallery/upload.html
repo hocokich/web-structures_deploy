@@ -1,70 +1,74 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
-        
         {% load static %}
         <link rel="stylesheet" href="{% static 'gallery/style.css' %}">
-
         <meta charset="UTF-8">
         <title>Загрузка модели</title>
-        <style>
-            body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
-            .form-group { margin-bottom: 1rem; }
-            button { padding: 10px 20px; cursor: pointer; }
-            button:disabled { opacity: 0.5; cursor: not-allowed; }
-            #preview-container {
-                width: 300px;
-                height: 200px;
-                background: #eee;
-                border: 1px solid #ccc;
-                position: relative;
-                overflow: hidden;
-            }
-            #preview-placeholder {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100%;
-                color: #999;
-                text-align: center;
-            }
-        </style>
     </head>
-    <body>
-        
-        <button class="theme-toggle" id="themeToggle">🌙</button>
-
-        <h1>Загрузить новую 3D модель</h1>
-
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            <!-- Django сам нарисует label и input для всех полей -->
-            <div class="form-group">
-                {{ form.as_p }}
+    <body class="upload-page">
+        <!-- ========== НОВЫЙ ФИКСИРОВАННЫЙ ХЕДЕР ========== -->
+        <header class="main-header" id="mainHeader">
+            <div class="header-container">
+                <!-- Логотип слева -->
+                <a href="{% url 'home' %}" class="logo">
+                    🎨 3D Storage
+                </a>
+                
+                <!-- Бургер-меню (только на мобилках) -->
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <!-- Навигация справа -->
+                <nav class="nav-menu" id="navMenu">
+                    <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">
+                        🏠 Галерея
+                    </a>
+                    <a href="{% url 'about' %}" class="nav-link {% if 'about' in request.path %}active{% endif %}">
+                        📖 О нас
+                    </a>
+                    <a href="{% url 'upload' %}" class="nav-link upload-btn">
+                        ✨ Загрузить модель
+                    </a>
+                    <!-- Кнопка переключения темы перенесена в хедер -->
+                    <button class="theme-toggle-header" id="themeToggleHeader">🌙</button>
+                </nav>
             </div>
+        </header>
 
-            <!-- БЛОК ПРЕВЬЮ -->
-            <div style="margin-bottom: 20px;">
-                <p>Авто-генерация превью:</p>
+        <main>
+            <h1>Загрузить новую 3D модель</h1>
+            
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
 
-                <!-- Сюда JS вставит Canvas с 3D моделью -->
-                <div id="preview-container" style="width: 300px; height: 200px; background: #eee;
-                border: 1px solid #ccc;">
-                    <span style="display: block; padding: 80px 0; text-align: center; color:
-                    #999;">Выберите файл...</span>
+                <!-- Django сам нарисует label и input для всех полей -->
+                <div class="form-group">
+                    {{ form.as_p }}
                 </div>
 
-                <!-- СКРЫТОЕ ПОЛЕ ДЛЯ BASE64 -->
-                <input type="hidden" name="image_data" id="id_image_data">
-            </div>
+                <!-- БЛОК ПРЕВЬЮ -->
+                <div style="margin-bottom: 20px;">
+                    <p>Авто-генерация превью:</p>
 
-            <!-- Кнопка отправки (блокируем её, пока не сгенерируется картинка) -->
-            <button type="submit" id="submit-btn" disabled>Загрузить в базу</button>
-        </form>
-        
-        <br>
-        <a href="{% url 'home' %}">← Домой</a>
+                    <!-- Сюда JS вставит Canvas с 3D моделью -->
+                    <div id="preview-container" style="width: 300px; height: 200px; background: #eee;
+                    border: 1px solid #ccc;">
+                        <span style="display: block; padding: 80px 0; text-align: center; color:
+                        #999;">Выберите файл...</span>
+                    </div>
+
+                    <!-- СКРЫТОЕ ПОЛЕ ДЛЯ BASE64 -->
+                    <input type="hidden" name="image_data" id="id_image_data">
+                </div>
+
+                <!-- Кнопка отправки (блокируем её, пока не сгенерируется картинка) -->
+                <button type="submit" id="submit-btn" disabled>Загрузить в базу</button>
+            </form>
+        </main>
 
         <!-- Подключаем скрипт-генератор -->
         {% load static %}
@@ -78,6 +82,7 @@
         </script>
         <script type="module" src="{% static 'gallery/js/autothumb.js' %}"></script>
         <script src="{% static 'gallery/js/theme.js' %}"></script>
+       
 
     </body>
 </html>
